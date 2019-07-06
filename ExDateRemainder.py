@@ -13,3 +13,13 @@ go though all remainder list
 3. send the notification "You have {} companies who exdate is this week"
 4. when click on the notification, launch a webpage, with list of all stocks and links
 '''
+
+
+from exdatecode.fetch_companies import get_list
+
+
+def control_panel():
+	get_list()
+
+if __name__ == '__main__':
+	control_panel()
