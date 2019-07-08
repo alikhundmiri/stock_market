@@ -15,11 +15,13 @@ go though all remainder list
 '''
 
 
-from exdatecode.fetch_companies import get_list
-
+# from exdatecode.fetch_companies import download_file
+from exdatecode.get_file.py import download_file
 
 def control_panel():
-	get_list()
+	# get_list()
+	download_file()
+
 
 if __name__ == '__main__':
 	control_panel()

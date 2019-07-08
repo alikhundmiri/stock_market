@@ -237,6 +237,11 @@ html_data = '''
 	</tr>
 	</table>
 '''
+
+def download_file():
+	pass
+
+
 def get_list():
 	page = requests.get(url)
 	soup = BeautifulSoup(page.text, 'html.parser')
