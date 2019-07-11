@@ -4,7 +4,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 import time
 import os
-from notify import notify
+
+from exdatecode.notify import notify
 
 url = 'https://www.bseindia.com/corporates/corporate_act.aspx'
 
@@ -36,15 +37,15 @@ def check_download(driver):
 		driver.get("chrome://downloads/")
 
 	last_download = driver.find_element_by_xpath('//*[@id="file-link"]')
-	print(last_download.text)
-	
+	print(last_download.text)	
 
 def download_file():
 	launch_chrome()
 	open_website(url)
 	# waits for all the files to be completed and returns the paths
 	check_download(driver)
-	
 	driver.close()
+
+
 if __name__ == '__main__':
 	download_file()

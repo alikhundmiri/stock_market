@@ -14,13 +14,29 @@ go though all remainder list
 4. when click on the notification, launch a webpage, with list of all stocks and links
 '''
 
-
-# from exdatecode.fetch_companies import download_file
-from exdatecode.get_file.py import download_file
+from exdatecode.fetch_companies import companies_with_exdates
+from exdatecode.fetch_companies import fetch_companies_remainder_list
+from exdatecode.file_and_folder_processing import generate_html_page
+from exdatecode.file_and_folder_processing import notify_user
+from exdatecode.file_and_folder_processing import create_file
 
 def control_panel():
-	# get_list()
-	download_file()
+
+	# if sunday, create a file on /Users/alikhundmiri/stockmarket/corporate_act
+	# name it as "2019_21", "YEAR_WEEK"
+	# and then download the corporate_act file.
+	# this will make sure we download new folder every sunday only. Keeps things consistent
+	download_location = create_file()	
+	
+	# update the stock list queue
+	# exdate_within_weeks = [1, 3]
+	# companies_with_exdates(exdate_within_weeks)
+
+def morning_routine():
+	# Fetch companies from the remainder text file
+	companies_list = fetch_companies_remainder_list()
+	page_location = generate_html_page(companies_list)
+	notify_user(page_location, len(companies_list))
 
 
 if __name__ == '__main__':

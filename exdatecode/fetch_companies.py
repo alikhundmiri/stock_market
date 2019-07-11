@@ -13,5 +13,7 @@ def companies_with_exdates(week):
 	# from file in download folder, get companies with ex date, and add the row to the return_list[]
 	print("week {}".format(week))
 
+def fetch_companies_remainder_list():
+	pass
 if __name__ == '__main__':
 	get_list([1, 3, 5])
