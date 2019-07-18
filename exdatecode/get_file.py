@@ -32,6 +32,7 @@ def open_website(page_link):
 	print("download started...")
 	return driver
 
+	# not using this code
 def check_download(driver):
 	if not driver.current_url.startswith("chrome://downloads"):
 		driver.get("chrome://downloads/")
@@ -39,11 +40,23 @@ def check_download(driver):
 	last_download = driver.find_element_by_xpath('//*[@id="file-link"]')
 	print(last_download.text)	
 
-def download_file():
+def move_download_file(download_location):
+	file_name = 'Corporate_Actions.csv'
+	old_location = 'users/alikhundmiri/Downloads/' + file_name
+	new_location = download_location + "/" + file_name
+
+	try:
+		os.rename(old_location, new_location)
+	except os.error:
+		print("ERROR | Can't move file from download to archive")
+	
+
+def download_file(download_location):
 	launch_chrome()
 	open_website(url)
 	# waits for all the files to be completed and returns the paths
-	check_download(driver)
+
+	move_download_file(download_location)
 	driver.close()
 
 

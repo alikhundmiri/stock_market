@@ -19,6 +19,7 @@ from exdatecode.fetch_companies import fetch_companies_remainder_list
 from exdatecode.file_and_folder_processing import generate_html_page
 from exdatecode.file_and_folder_processing import notify_user
 from exdatecode.file_and_folder_processing import create_file
+from exdatecode.file_and_folder_processing import BASE_DIR
 
 def control_panel():
 
@@ -26,7 +27,10 @@ def control_panel():
 	# name it as "2019_21", "YEAR_WEEK"
 	# and then download the corporate_act file.
 	# this will make sure we download new folder every sunday only. Keeps things consistent
-	download_location = create_file()	
+	print("Stage 01 | File Update Sequence")
+	download_location = create_file()
+	complete_download_location = BASE_DIR + download_location
+
 	
 	# update the stock list queue
 	# exdate_within_weeks = [1, 3]

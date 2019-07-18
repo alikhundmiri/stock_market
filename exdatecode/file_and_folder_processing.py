@@ -1,3 +1,6 @@
+import glob
+
+
 import os
 import datetime
 from exdatecode.notify import notify
@@ -26,40 +29,43 @@ def create_file():
 
 	# check if today is sunday
 	if today_is_sunday():
+
 		# if it is sunday, create a new folder
 		file_name = "{}_{}".format(this_year, this_week)
 
 		# generate the new src file
-		src = BASE_DIR + file_name
-
+		download_location = BASE_DIR + file_name
 		# and finally create the folder, taking the measures, dont create folder if it already exists
-		if not os.path.exists(src):
-			os.makedirs(src)
+		if not os.path.exists(download_location):
+			os.makedirs(download_location)
 
+		print("Stage 01 | File Update Sequence | Downloading New File")
 		# download the new corporate act file.
 		download_file(download_location)
 
 		# and then return the new file name
 		return file_name
 	else:
+		print("Stage 01 | File Update Sequence | Fetching Old File")
+
 		# if today is not sunday, simply get the old folder name. If we created it the file name can be Guessed.
-		return get_latest_file(this_year, this_week)
+		return get_latest_file()
 
 def today_is_sunday():
 	if datetime.datetime.today().weekday() == 6:
 		return True
 	else:
-		return False
+		return True
 
-def get_latest_file(this_year, this_week):
+def get_latest_file():
 
-	# need to work on this logic.
-	if this_week == 52:
-		this_week = 1
-		this_year =+ 1
+	# code from StackOverflow : https://stackoverflow.com/a/39327156/6518499
+	# this snippet will get the list of files, and then fetch the last one
 
-	file_name = "{}_{}".format(this_year, this_week)
-	return file_name
+	list_of_files = glob.glob(BASE_DIR+"*") # * means all if need specific format then *.csv
+	latest_file = max(list_of_files, key=os.path.getctime)
+	
+	return latest_file
 
 
 	
