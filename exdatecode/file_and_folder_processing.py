@@ -55,7 +55,7 @@ def today_is_sunday():
 	if datetime.datetime.today().weekday() == 6:
 		return True
 	else:
-		return True
+		return False
 
 def get_latest_file():
 
@@ -63,8 +63,10 @@ def get_latest_file():
 	# this snippet will get the list of files, and then fetch the last one
 
 	list_of_files = glob.glob(BASE_DIR+"*") # * means all if need specific format then *.csv
+
 	latest_file = max(list_of_files, key=os.path.getctime)
 	
+	latest_file = latest_file.replace(BASE_DIR, '')
 	return latest_file
 
 

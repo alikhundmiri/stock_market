@@ -20,7 +20,7 @@ from exdatecode.file_and_folder_processing import generate_html_page
 from exdatecode.file_and_folder_processing import notify_user
 from exdatecode.file_and_folder_processing import create_file
 from exdatecode.file_and_folder_processing import BASE_DIR
-
+from exdatecode.get_file import file_name
 def control_panel():
 
 	# if sunday, create a file on /Users/alikhundmiri/stockmarket/corporate_act
@@ -29,18 +29,19 @@ def control_panel():
 	# this will make sure we download new folder every sunday only. Keeps things consistent
 	print("Stage 01 | File Update Sequence")
 	download_location = create_file()
-	complete_download_location = BASE_DIR + download_location
-
+	morning_routine(download_location)
 	
-	# update the stock list queue
-	# exdate_within_weeks = [1, 3]
-	# companies_with_exdates(exdate_within_weeks)
+	
+	
 
-def morning_routine():
+def morning_routine(download_location):
 	# Fetch companies from the remainder text file
-	companies_list = fetch_companies_remainder_list()
-	page_location = generate_html_page(companies_list)
-	notify_user(page_location, len(companies_list))
+	complete_download_location = BASE_DIR + download_location + "/" + file_name
+	# print("complete_download_location: {}".format(complete_download_location))
+	
+	companies_list = fetch_companies_remainder_list(complete_download_location)
+	# page_location = generate_html_page(companies_list)
+	# notify_user(page_location, len(companies_list))
 
 
 if __name__ == '__main__':
