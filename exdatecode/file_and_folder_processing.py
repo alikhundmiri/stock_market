@@ -36,7 +36,13 @@ def create_file():
 		# generate the new src file
 		download_location = BASE_DIR + file_name
 		# and finally create the folder, taking the measures, dont create folder if it already exists
-		if not os.path.exists(download_location):
+		if os.path.exists(download_location):
+			file_download_location = download_location + "/" + file_name
+			if os.path.exists(file_download_location):
+				print("Stage 01 | File Update Sequence | File Already Downloaded")
+			else:
+				os.makedirs(download_location)
+		else:		
 			os.makedirs(download_location)
 
 		print("Stage 01 | File Update Sequence | Downloading New File")
