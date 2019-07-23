@@ -5,8 +5,9 @@ import os
 import datetime
 from exdatecode.notify import notify
 from exdatecode.get_file import download_file
+from exdatecode.get_file import file_name
 
-BASE_DIR = "/Users/alikhundmiri/stockmarket/corporate_act/"
+BASE_DIR = "o"
 
 def generate_html_page(companies_list):
 	for company in companies_list:
@@ -31,16 +32,20 @@ def create_file():
 	if today_is_sunday():
 
 		# if it is sunday, create a new folder
-		file_name = "{}_{}".format(this_year, this_week)
+		folder_name = "{}_{}".format(this_year, this_week)
 
 		# generate the new src file
-		download_location = BASE_DIR + file_name
+		download_location = BASE_DIR + folder_name
 		# and finally create the folder, taking the measures, dont create folder if it already exists
 		if os.path.exists(download_location):
+			print("Stage 01 | TEST | folder '{}' exists".format(folder_name))
 			file_download_location = download_location + "/" + file_name
 			if os.path.exists(file_download_location):
+				print("Stage 01 | TEST | file '{}' exists. No need to download".format(file_name))
 				print("Stage 01 | File Update Sequence | File Already Downloaded")
+				return folder_name
 			else:
+				print("Stage 01 | TEST | Folder '{}' exists, but file '{}' doesnt exist. Creating file".format(folder_name, file_name))
 				os.makedirs(download_location)
 		else:		
 			os.makedirs(download_location)
@@ -50,7 +55,7 @@ def create_file():
 		download_file(download_location)
 
 		# and then return the new file name
-		return file_name
+		return folder_name
 	else:
 		print("Stage 01 | File Update Sequence | Fetching Old File")
 
@@ -61,7 +66,7 @@ def today_is_sunday():
 	if datetime.datetime.today().weekday() == 6:
 		return True
 	else:
-		return False
+		return True
 
 def get_latest_file():
 
