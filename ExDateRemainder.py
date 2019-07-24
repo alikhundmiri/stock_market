@@ -30,16 +30,18 @@ def control_panel():
 	print("Stage 01 | File Update Sequence")
 	download_location = create_file()
 	morning_routine(download_location)
-	
-	
-	
 
 def morning_routine(download_location):
+
 	# Fetch companies from the remainder text file
 	complete_download_location = BASE_DIR + download_location + "/" + file_name
 	# print("complete_download_location: {}".format(complete_download_location))
 	
-	companies_list = fetch_companies_remainder_list(complete_download_location)
+	exdate_within = 3
+	companies_list = fetch_companies_remainder_list(complete_download_location, exdate_within)
+
+	if companies_list == False:
+		print("Stage 02 | Found no stocks with ExDate within {} days".format(exdate_within))
 	# page_location = generate_html_page(companies_list)
 	# notify_user(page_location, len(companies_list))
 
