@@ -7,7 +7,7 @@ from exdatecode.notify import notify
 from exdatecode.get_file import download_file
 from exdatecode.get_file import file_name
 
-BASE_DIR = "o"
+BASE_DIR = "/Users/alikhundmiri/stockmarket/corporate_act/"
 
 def generate_html_page(companies_list):
 	for company in companies_list:
@@ -66,7 +66,7 @@ def today_is_sunday():
 	if datetime.datetime.today().weekday() == 6:
 		return True
 	else:
-		return True
+		return False
 
 def get_latest_file():
 

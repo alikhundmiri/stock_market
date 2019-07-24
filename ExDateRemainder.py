@@ -21,8 +21,8 @@ from exdatecode.file_and_folder_processing import notify_user
 from exdatecode.file_and_folder_processing import create_file
 from exdatecode.file_and_folder_processing import BASE_DIR
 from exdatecode.get_file import file_name
-def control_panel():
 
+def control_panel():
 	# if sunday, create a file on /Users/alikhundmiri/stockmarket/corporate_act
 	# name it as "2019_21", "YEAR_WEEK"
 	# and then download the corporate_act file.
