@@ -4,14 +4,9 @@ import glob
 import os
 import datetime
 from exdatecode.notify import notify
-from exdatecode.get_file import download_file
-from exdatecode.get_file import file_name
+from exdatecode.get_file import download_file, file_name
 
 BASE_DIR = "/Users/alikhundmiri/stockmarket/corporate_act/"
-
-def generate_html_page(companies_list):
-	for company in companies_list:
-		print(company)
 
 def notify_user(page_location, number_of_companies):
 	title = 'Downloading...'

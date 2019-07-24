@@ -48,7 +48,6 @@ def fetch_companies_remainder_list(file_location, exdate_within):
 		next(reader)
 		for row in reader:
 
-			# datetime_object = datetime.strptime(row[3], '%d %b %Y')
 			interested_stock = check_date(row, days_within=exdate_within)
 			if interested_stock:
 				company_counter += 1

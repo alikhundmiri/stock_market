@@ -14,9 +14,9 @@ go though all remainder list
 4. when click on the notification, launch a webpage, with list of all stocks and links
 '''
 
+from exdatecode.html_pages import generate_html_page
 from exdatecode.fetch_companies import companies_with_exdates
 from exdatecode.fetch_companies import fetch_companies_remainder_list
-from exdatecode.file_and_folder_processing import generate_html_page
 from exdatecode.file_and_folder_processing import notify_user
 from exdatecode.file_and_folder_processing import create_file
 from exdatecode.file_and_folder_processing import BASE_DIR
@@ -42,9 +42,21 @@ def morning_routine(download_location):
 
 	if companies_list == False:
 		print("Stage 02 | Found no stocks with ExDate within {} days".format(exdate_within))
-	# page_location = generate_html_page(companies_list)
+	
+	# create an html page, return a string (?)
+	page_location = generate_html_page(companies_list)
+
+	# take that string (?) and send a fancy email to all people in list.
 	# notify_user(page_location, len(companies_list))
 
+def multi_user_mode(download_location):
+	# have a list user who wants emails
+	# containing info like
+	# 	email address
+	# 	exdate_within
+	# go thtough all them
+	pass
+	
 
 if __name__ == '__main__':
 	control_panel()
