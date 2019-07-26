@@ -12,3 +12,6 @@ def notify(title, text, subtitle):
 
 if __name__ == '__main__':
 	notify("Testing", "Sending a random message", "Mic Testing, 1 2 3...")
+
+if __name__ == "__main__" and __package__ is None:
+	__package__ = "contactuser.notify"

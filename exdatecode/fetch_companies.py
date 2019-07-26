@@ -3,6 +3,12 @@ import json
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+import os
+# from exdatecode.file_and_folder_processing import get_latest_file
+# from exdatecode.file_and_folder_processing import BASE_DIR
+# from exdatecode.get_file import file_name
+
+from exdatecode.notify import notify
 
 return_list = []
 
@@ -38,7 +44,6 @@ def companies_with_exdates(week):
 	# from file in download folder, get companies with ex date, and add the row to the return_list[]
 	return_list.append(week)
 
-
 def fetch_companies_remainder_list(file_location, exdate_within):
 	print("Stage 02 | Reading file")
 	company_counter = 0
@@ -52,12 +57,12 @@ def fetch_companies_remainder_list(file_location, exdate_within):
 			if interested_stock:
 				company_counter += 1
 
-	print("Stage 02 | Found {} companies.".format(company_counter))
+	print("Stage 02 | Found {} companies with exdate with {} days".format(company_counter, exdate_within))
 
-	print("Stage 02 | Printing List:\n")
+	# print("Stage 02 | Printing List:\n")
 
-	for row in return_list:
-		print("Buy Stock of '{}' \nin {} days. \nOffer: {}.\n-------------\n".format(row[2], row[3], row[4]))
+	# for row in return_list:
+	# 	print("Buy Stock of '{}' \nin {} days. \nOffer: {}.\n-------------\n".format(row[2], row[3], row[4]))
 		
 
 	csvFile.close()
@@ -66,5 +71,9 @@ def fetch_companies_remainder_list(file_location, exdate_within):
 	else:
 		return return_list
 
-if __name__ == '__main__':
-	get_list([1, 3, 5])
+# if __name__ == '__main__':
+	# get_list([1, 3, 5])
+	# file_location = BASE_DIR + get_latest_file() + file_name
+	# exdate_within = 7
+	# fetch_companies_remainder_list(file_location, exdate_within)
+	
