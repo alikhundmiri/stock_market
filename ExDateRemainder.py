@@ -12,6 +12,7 @@ go though all remainder list
 2. on computer startup in morning, run the notify list,
 3. send the notification "You have {} companies who exdate is this week"
 4. when click on the notification, launch a webpage, with list of all stocks and links
+
 '''
 
 from exdatecode.html_pages import generate_html_page
