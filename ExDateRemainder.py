@@ -15,7 +15,7 @@ go though all remainder list
 
 '''
 
-from exdatecode.html_pages import generate_html_page
+from exdatecode.html_pages import html_page_manager
 from exdatecode.fetch_companies import companies_with_exdates
 from exdatecode.fetch_companies import fetch_companies_remainder_list
 from exdatecode.file_and_folder_processing import notify_user
@@ -45,7 +45,7 @@ def morning_routine(download_location):
 		print("Stage 02 | Found no stocks with ExDate within {} days".format(exdate_within))
 	
 	# create an html page, return a string (?)
-	page_location = generate_html_page(companies_list)
+	page_location = html_page_manager(companies_list)
 
 	# take that string (?) and send a fancy email to all people in list.
 	# notify_user(page_location, len(companies_list))
