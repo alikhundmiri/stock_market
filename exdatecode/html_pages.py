@@ -42,7 +42,7 @@ def html_page_manager(companies_list):
 
 		generate_html_page(companies_list, today_date, html_location)
 	
-	webbrowser.open(html_location)	
+	webbrowser.open('file://'+html_location)	
 	return True
 
 
